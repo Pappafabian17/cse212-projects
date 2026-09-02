@@ -12,53 +12,53 @@ public static class StandardDeviation {
         Console.WriteLine(StandardDeviation3(numbers)); // Should be 147.322 
     }
 
-    private static double StandardDeviation1(int[] numbers) {
-        var total = 0.0;
-        var count = 0;
-        foreach (var number in numbers) {
-            total += number;
-            count += 1;
+    private static double StandardDeviation1(int[] numbers) { // 5n  + 6 => O(n)
+        var total = 0.0;// 1
+        var count = 0;// 1
+        foreach (var number in numbers) { // n
+            total += number; // n
+            count += 1; // n
         }
 
-        var avg = total / count;
-        var sumSquaredDifferences = 0.0;
-        foreach (var number in numbers) {
-            sumSquaredDifferences += Math.Pow(number - avg, 2);
+        var avg = total / count; // 1
+        var sumSquaredDifferences = 0.0;//1
+        foreach (var number in numbers) { // n
+            sumSquaredDifferences += Math.Pow(number - avg, 2); //n
         }
 
-        var variance = sumSquaredDifferences / count;
-        return Math.Sqrt(variance);
+        var variance = sumSquaredDifferences / count; // 1
+        return Math.Sqrt(variance);//1
     }
 
-    private static double StandardDeviation2(int[] numbers) {
-        var sumSquaredDifferences = 0.0;
-        var countNumbers = 0;
-        foreach (var number in numbers) {
-            var total = 0;
-            var count = 0;
-            foreach (var value in numbers) {
-                total += value;
-                count += 1;
+    private static double StandardDeviation2(int[] numbers) {// 3n2 + 3n + 7 => n2
+        var sumSquaredDifferences = 0.0;// 1
+        var countNumbers = 0;// 1
+        foreach (var number in numbers) { //n
+            var total = 0;//n
+            var count = 0;//n
+            foreach (var value in numbers) {//n2
+                total += value;//n2
+                count += 1;//n2
             }
 
-            var avg = total / count;
-            sumSquaredDifferences += Math.Pow(number - avg, 2);
-            countNumbers += 1;
+            var avg = total / count;//1
+            sumSquaredDifferences += Math.Pow(number - avg, 2);//1
+            countNumbers += 1;//1
         }
 
-        var variance = sumSquaredDifferences / countNumbers;
-        return Math.Sqrt(variance);
+        var variance = sumSquaredDifferences / countNumbers;//1
+        return Math.Sqrt(variance);//1
     }
 
-    private static double StandardDeviation3(int[] numbers) {
-        var count = numbers.Length;
-        var avg = (double)numbers.Sum() / count;
-        var sumSquaredDifferences = 0.0;
-        foreach (var number in numbers) {
-            sumSquaredDifferences += Math.Pow(number - avg, 2);
+    private static double StandardDeviation3(int[] numbers) { //2n+5 => n
+        var count = numbers.Length;//1
+        var avg = (double)numbers.Sum() / count;//1
+        var sumSquaredDifferences = 0.0;//1
+        foreach (var number in numbers) {//n
+            sumSquaredDifferences += Math.Pow(number - avg, 2);//n
         }
 
-        var variance = sumSquaredDifferences / count;
-        return Math.Sqrt(variance);
+        var variance = sumSquaredDifferences / count;//1
+        return Math.Sqrt(variance);//1
     }
 }

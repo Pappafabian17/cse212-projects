@@ -35,12 +35,12 @@ public static class Algorithms {
     /// done the count is returned.
     /// </summary>
     /// <param name="size">the amount of work to do</param>
-    private static int Algorithm1(int size) {
-        var count = 0;
-        for (var i = 0; i < size; ++i)
-            count += 1;
+    private static int Algorithm1(int size) { // 2n + 2 => n
+        var count = 0; //1
+        for (var i = 0; i < size; ++i) //n 
+            count += 1; // n
 
-        return count;
+        return count; // 1  
     }
 
     /// <summary>
@@ -49,13 +49,13 @@ public static class Algorithms {
     /// done the count is returned.
     /// </summary>
     /// <param name="size">the amount of work to do</param>
-    private static int Algorithm2(int size) {
-        var count = 0;
-        for (var i = 0; i < size; ++i)
-        for (var j = 0; j < size; ++j)
-            count += 1;
+    private static int Algorithm2(int size) { // n + 2n2 + 2 => n2 
+        var count = 0;//1
+        for (var i = 0; i < size; ++i) //n
+        for (var j = 0; j < size; ++j) //n2
+            count += 1; //n2
 
-        return count;
+        return count; // 1
     }
 
     /// <summary>
@@ -64,16 +64,16 @@ public static class Algorithms {
     /// done the count is returned.
     /// </summary>
     /// <param name="size">the amount of work to do</param>
-    private static int Algorithm3(int size) {
-        var count = 0;
-        var start = 0;
-        var end = size - 1;
-        while (start <= end) {
-            var middle = (end - start) / 2 + start;
-            start = middle + 1;
-            count += 1;
+    private static int Algorithm3(int size) { // log n + 3n +4 => log n
+        var count = 0; // 1
+        var start = 0; // 1
+        var end = size - 1; //1
+        while (start <= end) {  // log n
+            var middle = (end - start) / 2 + start; //log n
+            start = middle + 1; //log n
+            count += 1; //log  n
         }
 
-        return count;
+        return count; // 1
     }
 }

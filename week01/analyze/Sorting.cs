@@ -5,11 +5,11 @@
         Console.Out.WriteLine("int[]{{{0}}}", string.Join(", ", numbers)); //int[]{1, 2, 3, 4, 6, 8, 9}
     }
 
-    private static void SortArray(int[] data) {
-        for (var sortPos = data.Length - 1; sortPos >= 0; sortPos--) {
-            for (var swapPos = 0; swapPos < sortPos; ++swapPos) {
-                if (data[swapPos] > data[swapPos + 1]) {
-                    (data[swapPos + 1], data[swapPos]) = (data[swapPos], data[swapPos + 1]);
+    private static void SortArray(int[] data) { // 3n2 + n => O(n2)
+        for (var sortPos = data.Length - 1; sortPos >= 0; sortPos--) {//n
+            for (var swapPos = 0; swapPos < sortPos; ++swapPos) {//n2
+                if (data[swapPos] > data[swapPos + 1]) {//n2
+                    (data[swapPos + 1], data[swapPos]) = (data[swapPos], data[swapPos + 1]);//n2
                 }
             }
         }
