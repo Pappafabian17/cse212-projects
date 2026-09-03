@@ -12,8 +12,16 @@ public static class Arrays
         // Remember: Using comments in your program, write down your process for solving this problem
         // step by step before you write the code. The plan should be clear enough that it could
         // be implemented by another person.
-
-        return []; // replace this return statement with your own
+        //create an array of type double the array will be as large as the input (length variable)
+        double[] result = new double[length];
+        // do a for each to iterate several times 
+        for(int i = 0; i < length; i++)
+        {
+            //assign the value of the multiplication on the array position , first time it will be number times 1 because i = 0
+            result[i] = number * (i+1);
+        }
+        //return the result (is an array)
+        return result; // replace this return statement with your own
     }
 
     /// <summary>
@@ -29,5 +37,20 @@ public static class Arrays
         // Remember: Using comments in your program, write down your process for solving this problem
         // step by step before you write the code. The plan should be clear enough that it could
         // be implemented by another person.
+        if (amount == data.Count || amount == 0)
+        {
+            return;
+        }
+        // If amount==data.Count or 0,list is unchanged
+        int startIndex = data.Count - amount;
+
+        //grab the slice of the end
+        List<int> toMove = data.GetRange(startIndex, amount);
+
+        // delete that slice 
+        data.RemoveRange(startIndex, amount);
+
+        //insert the slice at position 0
+        data.InsertRange(0, toMove);
     }
 }
