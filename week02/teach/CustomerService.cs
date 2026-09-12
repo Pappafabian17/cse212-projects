@@ -1,4 +1,4 @@
-﻿/// <summary>
+/// <summary>
 /// Maintain a Customer Service Queue.  Allows new customers to be 
 /// added and allows customers to be serviced.
 /// </summary>
@@ -10,22 +10,38 @@ public class CustomerService {
 
         // Test Cases
 
-        // Test 1
-        // Scenario: 
-        // Expected Result: 
+         // Test 1
+        // Scenario: Can I add one customer and then serve the customer?
+        // Expected Result: Should display the customer that was added without throwing an exception.
         Console.WriteLine("Test 1");
-
-        // Defect(s) Found: 
-
+        var service = new CustomerService(4);
+        service.AddNewCustomer();
+        service.ServeCustomer();
+        // Defect(s) Found: ServeCustomer tried to delete before reading the customer.
         Console.WriteLine("=================");
 
         // Test 2
-        // Scenario: 
-        // Expected Result: 
+        // Scenario: Can I add two customers and then serve them in the right FIFO order?
+        // Expected Result: Should display customers in the order they were entered.
         Console.WriteLine("Test 2");
+        service = new CustomerService(4);
+        service.AddNewCustomer();
+        service.AddNewCustomer();
+        Console.WriteLine($"Before serving: {service}");
+        service.ServeCustomer();
+        service.ServeCustomer();
+        Console.WriteLine($"After serving: {service}");
+        // Defect(s) Found: None (if Test 1 is fixed).
+        Console.WriteLine("=================");
 
-        // Defect(s) Found: 
-
+        
+        // Test 3
+        // Scenario: Can I serve a customer if the queue is empty?
+        // Expected Result: Should display an error message and not crash.
+        Console.WriteLine("Test 3");
+        service = new CustomerService(4);
+        service.ServeCustomer();
+        // Defect(s) Found: Missing check for empty queue in ServeCustomer.
         Console.WriteLine("=================");
 
         // Add more Test Cases As Needed Below
@@ -67,7 +83,7 @@ public class CustomerService {
     /// </summary>
     private void AddNewCustomer() {
         // Verify there is room in the service queue
-        if (_queue.Count > _maxSize) {
+        if (_queue.Count >= _maxSize) {// if 4>4 you will be able to add a 5th customer
             Console.WriteLine("Maximum Number of Customers in Queue.");
             return;
         }
@@ -88,8 +104,12 @@ public class CustomerService {
     /// Dequeue the next customer and display the information.
     /// </summary>
     private void ServeCustomer() {
-        _queue.RemoveAt(0);
+        if (_queue.Count <= 0) {
+            Console.WriteLine("Error: Queue is empty.");
+            return;
+        }
         var customer = _queue[0];
+        _queue.RemoveAt(0);
         Console.WriteLine(customer);
     }
 

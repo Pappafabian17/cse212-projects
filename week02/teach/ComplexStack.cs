@@ -1,6 +1,6 @@
 ﻿public static class ComplexStack {
     public static bool DoSomethingComplicated(string line) {
-        var stack = new Stack<char>();
+        var stack = new Stack<char>();//create stack
         foreach (var item in line) {
             if (item is '(' or '[' or '{') {
                 stack.Push(item);
